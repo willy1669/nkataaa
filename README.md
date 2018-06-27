@@ -1,0 +1,1 @@
+A soccial networking app running on node.js and mongoDb
