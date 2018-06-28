@@ -7,5 +7,5 @@ router.post('/create', userController.addPost);
 
 router.get('/', userController.getUser);
 
-
+router.get('/delete/:id', userController.deleteUser)
 module.exports = router;
