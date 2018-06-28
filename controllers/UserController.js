@@ -4,7 +4,8 @@ exports.addUser = function (req, res){
 var data = {
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    posts: [req.body.posts]
 };
 model.create(data, function(err){
     if (err) res.json({err: err, message: 'The user could not be created'});
