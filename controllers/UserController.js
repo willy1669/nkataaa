@@ -8,7 +8,7 @@ var data = {
 };
 model.create(data, function(err){
     if (err) res.json({err: err, message: 'The user could not be created'});
-    res,json ({message: 'The user is created successfully'});
+    res.json ({message: 'The user is created successfully'});
 });
 }
 
