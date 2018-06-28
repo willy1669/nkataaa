@@ -7,8 +7,15 @@ exports.addPost = function (req, res){
         user: req.body.user
     };
     model.create(data, function(err){
-        if(err) res.json({err: err, message: 'Post cannot be created'});
+        if (err) res.json({err: err, message: 'Post cannot be created'});
         res.json ({message: 'Post created successfully'});
+    });
+}
+
+exports.getPost = function (req, res){
+    model.find(posts, function (err){
+        if (err) res.json({err: err, message: 'Post not found'});
+        res.json({posts});
     });
 }
 
