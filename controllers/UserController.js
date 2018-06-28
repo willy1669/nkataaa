@@ -12,3 +12,10 @@ model.create(data, function(err){
 });
 }
 
+exports.getUser = function (req, res){
+    model.find(function(err, users){
+        if(err) res.json ({err: err, message: 'Something went wrong'});
+        res.json ({users});
+    });
+}
+
