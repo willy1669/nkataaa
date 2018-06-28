@@ -19,3 +19,11 @@ exports.getPost = function (req, res){
     });
 }
 
+exports.deletePost = function (req, res){
+    var options = {_id: req.params.id,};
+    model.remove(options, function (err){
+        if (err) res.json({err: err, message: 'The resource could not be deleted'});
+        res.json ({message: 'The Post was deleted'});
+    });
+
+}
