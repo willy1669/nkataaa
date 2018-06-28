@@ -7,14 +7,14 @@ var data = {
     password: req.body.password,
 };
 model.create(data, function(err){
-    if(err) res.json({err: err, message: 'The user could not be created'});
+    if (err) res.json({err: err, message: 'The user could not be created'});
     res,json ({message: 'The user is created successfully'});
 });
 }
 
 exports.getUser = function (req, res){
     model.find(function (err, users){
-        if(err) res.json ({err: err, message: 'Something went wrong'});
+        if (err) res.json ({err: err, message: 'Something went wrong'});
         res.json ({users});
     });
 }
@@ -22,9 +22,36 @@ exports.getUser = function (req, res){
 exports.deleteUser = function (req, res){
     var options = {_id: req.params.id};
     model.remove(function (err, options){
-        if(err) res.json({err: err, message: 'The resource was not found'});
+        if (err) res.json({err: err, message: 'The resource was not found'});
         res.json ({message: 'The source was deleted'});
     });
 }
 
+exports.getUserByParam = function (req, res){
+    var key = req.params.key;
+    var value = req.params.value;
+    switch (key) {
+        case 'id':
+        model.findById(value, '-password', function (err, data){
+            if (err) res.json ({err: err, message: 'Id not found'});
+            res.json({message: data});
+        });
+        break;
 
+        case 'email':
+        model.findOne({email: 'value'}, '-password', function (err, data){
+            if (err) res.json ({err: err, message: 'Email not found'});
+            res.json ({message: data});
+        });
+
+        case 'name':
+        model.find({name: 'value'}, '-password', function(err, data){
+            if (err) ({err: err, message: 'Name not found'});
+            res.json({message: data});
+        });
+        break;
+        default:
+        res.json({message: 'Could not find resource'});
+        break;    
+    };
+}
