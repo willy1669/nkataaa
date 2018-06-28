@@ -25,5 +25,4 @@ exports.deletePost = function (req, res){
         if (err) res.json({err: err, message: 'The resource could not be deleted'});
         res.json ({message: 'The Post was deleted'});
     });
-
 }
