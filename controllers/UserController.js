@@ -4,11 +4,11 @@ exports.addUser = function (req, res){
 var data = {
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
+    password: req.body.password
 };
 model.create(data, function(err){
     if (err) res.json({err: err, message: 'The user could not be created'});
-    res.json ({message: 'The user is created successfully'});
+    res._idjson ({message: 'The user is created successfully'});
 });
 }
 
@@ -21,7 +21,7 @@ exports.getUser = function (req, res){
 
 exports.deleteUser = function (req, res){
     var options = {_id: req.params.id};
-    model.remove(function (err, options){
+    model.remove(options, function (err, options){
         if (err) res.json({err: err, message: 'The resource was not found'});
         res.json ({message: 'The source was deleted'});
     });
