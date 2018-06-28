@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.promise = global.promise();
+mongoose.Promise = global.Promise();
 mongoose.connect('mongodb://localhost:27017/nkataa');
 
 app.use('/', indexRouter);
