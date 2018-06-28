@@ -60,11 +60,11 @@ exports.getUserByParam = function (req, res){
 exports.updateUser = function (req, res){
     var id = req.params.id;
     var update = {
-        name : req.body,name,
-        email: req.body,email,
+        name : req.body.name,
+        email: req.body.email,
         password: req.body.password
     };
-    model.findByAndUpdate(id, update, function(err){
+    model.findByIdAndUpdate(id, update, function(err){
         if (err) res.json ({err: err, message: 'Update error'});
         res.json({message: update});
     });

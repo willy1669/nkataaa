@@ -7,7 +7,7 @@ router.post('/create', userController.addUser);
 
 router.get('/', userController.getUser);
 
-router.post('/', userController.updateUser);
+router.post('/update/:id', userController.updateUser);
 
 router.get('/delete/:id', userController.deleteUser);
 
