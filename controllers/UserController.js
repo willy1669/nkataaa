@@ -13,9 +13,18 @@ model.create(data, function(err){
 }
 
 exports.getUser = function (req, res){
-    model.find(function(err, users){
+    model.find(function (err, users){
         if(err) res.json ({err: err, message: 'Something went wrong'});
         res.json ({users});
     });
 }
+
+exports.deleteUser = function (req, res){
+    var options = {_id: req.params.id};
+    model.remove(function (err, options){
+        if(err) res.json({err: err, message: 'The resource was not found'});
+        res.json ({message: 'The source was deleted'});
+    });
+}
+
 
